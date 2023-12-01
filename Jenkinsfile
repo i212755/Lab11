@@ -26,6 +26,7 @@ pipeline {
         stage('Test') {
             when {
                 expression {
+                        return !flag
                        return params.flag == false
                 }
             }
