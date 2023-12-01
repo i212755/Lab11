@@ -22,7 +22,7 @@ pipeline {
         stage('Test') {
             when {
                 expression {
-                    return !flag || !params.flag || params.ExecuteTests
+                    return !params.flag || params.ExecuteTests
                 }
             }
             steps {
@@ -30,4 +30,16 @@ pipeline {
                 // Add your test commands here
             }
         }
+    }
+
+    post {
+        always {
+            echo 'This will always run, regardless of the build result'
+            // Add any post-build actions that should always run here
+        }
+        failure {
+            echo 'This will run only if the build fails'
+            // Add any post-build actions specific to failure here
+        }
+    }
 }
