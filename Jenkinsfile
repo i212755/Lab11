@@ -1,5 +1,5 @@
 def flag = true
-def VERSION = '1.0.0' 
+def VERSION = '1.0.0' // Replace with your actual version or define it as needed
 
 pipeline {
     agent any
