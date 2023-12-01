@@ -23,13 +23,18 @@ pipeline {
         stage('Test') {
             when {
                 expression {
-                    return !ExecuteTests
-                    return params.ExecuteTests == false
+                    return params.ExecuteTests
                 }
             }
             steps {
-                echo 'Testing...'
-                // Add your test commands here
+                script {
+                    if (params.ExecuteTests) {
+                        echo 'Testing...'
+                        // Add your test commands here
+                    } else {
+                        echo 'Skipping tests...'
+                    }
+                }
             }
         }
 
