@@ -1,35 +1,20 @@
+def flag = true
+
 pipeline {
     agent any
-
     parameters {
         booleanParam(name: 'flag', defaultValue: true, description: 'Set flag to true or false')
+        string(name: 'myVersion', defaultValue: '2.2.4', description: 'Specify the version')
     }
-
     stages {
         stage('Build') {
             steps {
-                echo 'Building...'
+                echo "Building... with version ${myVersion}"
                 // Add your build commands here
-            }
-        }
-
-        stage('Test') {
-            when {
-                expression {
-                    return params.flag == false
+                script {
+                    echo "Building... with version ${params.myVersion}"
+                    // Add your build commands here
                 }
-            }
-            steps {
-                echo 'Testing...'
-                // Add your test commands here
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
-                echo 'Deploying... And test stage should be skipped'
-                // Add your deployment commands here
             }
         }
     }
