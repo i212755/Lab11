@@ -23,7 +23,7 @@ pipeline {
         stage('Test') {
             when {
                 expression {
-                    params.ExecuteTests
+                    return params.ExecuteTests
                 }
             }
             steps {
