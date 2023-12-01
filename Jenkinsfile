@@ -19,10 +19,11 @@ pipeline {
                 }
             }
         }
+
         stage('Test') {
             when {
                 expression {
-                    return !params.flag || params.ExecuteTests
+                    return params.ExecuteTests
                 }
             }
             steps {
@@ -30,6 +31,15 @@ pipeline {
                 // Add your test commands here
             }
         }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying... And test stage should be skipped'
+                sh 'nvm install'
+                // Add your deployment commands here
+            }
+        }
+        // Add more stages as needed
     }
 
     post {
